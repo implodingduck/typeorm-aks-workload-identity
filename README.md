@@ -1,0 +1,1 @@
+# typeorm-aks-workload-identity

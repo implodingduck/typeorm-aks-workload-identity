@@ -1,11 +1,21 @@
-import { AppDataSource } from "./data-source"
+import { createAppDataSource, AppDataSource } from "./data-source"
 import { Employees } from "./entity/Employees"
 
-AppDataSource.initialize().then(async () => {
-    console.log("AppDataSource has been initialized!")
-    const users = await AppDataSource.manager.find(Employees)    
-    console.log("Loaded users: ", users)
+async function main() {
+    try {
+        // Create and initialize the DataSource with the access token
+        const dataSource = await createAppDataSource();
+        await dataSource.initialize();
+        
+        console.log("AppDataSource has been initialized!")
+        const users = await dataSource.manager.find(Employees)    
+        console.log("Loaded users: ", users)
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+        console.log("Here you can setup and run express / fastify / any other framework.")
+        
+    } catch (error) {
+        console.log("Error initializing application:", error)
+    }
+}
 
-}).catch(error => console.log(error))
+main();

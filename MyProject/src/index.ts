@@ -1,6 +1,6 @@
 import { createAppDataSource, AppDataSource } from "./data-source"
 import { Employees } from "./entity/Employees"
-import { DefaultAzureCredential } from "@azure/identity";
+import { WorkloadIdentityCredential } from "@azure/identity";
 import { SecretClient } from "@azure/keyvault-secrets";
 
 async function main() {
@@ -10,7 +10,7 @@ async function main() {
         const keyVaultUrl = process.env["KEYVAULT_URL"];
         const secretName = process.env["SECRET_NAME"];
 
-        const credential = new DefaultAzureCredential();
+        const credential = new WorkloadIdentityCredential();
         const client = new SecretClient(keyVaultUrl, credential);
 
         const secret = await client.getSecret(secretName);

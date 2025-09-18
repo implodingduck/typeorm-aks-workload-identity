@@ -1,3 +1,3 @@
 #!/bin/bash
-ls -lta
+env
 npm run start

@@ -9,9 +9,10 @@
       "typescript": "^5.8.2"
    },
    "dependencies": {
+      "@azure/identity": "^4.12.0",
+      "mssql": "^10.0.4",
       "reflect-metadata": "^0.2.2",
-      "typeorm": "0.3.26",
-      "mssql": "^10.0.4"
+      "typeorm": "0.3.26"
    },
    "scripts": {
       "start": "ts-node src/index.ts",

@@ -5,6 +5,7 @@ import { Employees } from "./entity/Employees"
 
 // Function to get access token for SQL Server using User Assigned Managed Identity
 async function getAccessToken(): Promise<string> {
+    console.log("Acquiring access token using Managed Identity...");
     const credential = new ManagedIdentityCredential({
         clientId: process.env.AZURE_CLIENT_ID // User Assigned Managed Identity Client ID
     });
@@ -20,7 +21,7 @@ async function getAccessToken(): Promise<string> {
 // Function to create and initialize DataSource with access token
 export async function createAppDataSource(): Promise<DataSource> {
     const token = await getAccessToken();
-    
+    console.log("Access token acquired.");
     return new DataSource({
         type: "mssql",
         host: process.env.SQL_HOST || "localhost",

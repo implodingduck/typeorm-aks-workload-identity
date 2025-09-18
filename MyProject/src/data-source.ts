@@ -1,14 +1,12 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { ManagedIdentityCredential } from "@azure/identity"
+import { DefaultAzureCredential  } from "@azure/identity"
 import { Employees } from "./entity/Employees"
 
 // Function to get access token for SQL Server using User Assigned Managed Identity
 async function getAccessToken(): Promise<string> {
     console.log("Acquiring access token using Managed Identity...");
-    const credential = new ManagedIdentityCredential({
-        clientId: process.env.AZURE_CLIENT_ID // User Assigned Managed Identity Client ID
-    });
+    const credential = new DefaultAzureCredential ();
     
     const tokenResponse = await credential.getToken("https://database.windows.net/");
     if (!tokenResponse) {

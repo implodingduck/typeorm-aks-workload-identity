@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testtypeorm
+  namespace: YOUR_NAMESPACE
+  labels:
+    app: testtypeorm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testtypeorm
+  template:
+    metadata:
+      labels:
+        app: testtypeorm
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: YOUR_SERVICE_ACCOUNT_NAME
+      containers:
+      - name: testtypeorm
+        image: ghcr.io/implodingduck/typeorm-aks-workload-identity:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: SQL_HOST
+          value: YOUR_SQL_HOST
+        - name: SQL_DB
+          value: YOUR_SQL_DB
+        - name: AZURE_CLIENT_ID
+          value: YOUR_AZURE_CLIENT_ID
+        - name: AZURE_SUBSCRIPTION_ID
+          value: YOUR_AZURE_SUBSCRIPTION_ID
+        - name: AZURE_TENANT_ID
+          value: YOUR_AZURE_TENANT_ID

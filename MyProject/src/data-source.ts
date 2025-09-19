@@ -33,7 +33,7 @@ export async function createAppDataSource(): Promise<DataSource> {
             authentication: {
                 type: "azure-active-directory-access-token",
                 options: {
-                    token: token // Now this is a string, not a function
+                    token: token // Use the acquired access token
                 }
             },
             encrypt: true,

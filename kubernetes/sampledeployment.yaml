@@ -20,8 +20,6 @@ spec:
       containers:
       - name: testtypeorm
         image: ghcr.io/implodingduck/typeorm-aks-workload-identity:latest
-        ports:
-        - containerPort: 3000
         env:
         - name: SQL_HOST
           value: YOUR_SQL_HOST

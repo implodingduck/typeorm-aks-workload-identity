@@ -9,7 +9,8 @@ async function main() {
 
         const keyVaultUrl = process.env["KEYVAULT_URL"];
         const secretName = process.env["SECRET_NAME"];
-
+        console.log(`Key Vault URL: ${keyVaultUrl}, Secret Name: ${secretName}`);
+        
         const credential = new WorkloadIdentityCredential();
         const client = new SecretClient(keyVaultUrl, credential);
 

@@ -8,7 +8,7 @@ async function getAccessToken(): Promise<string> {
     console.log("Acquiring access token using Managed Identity...");
     const credential = new DefaultAzureCredential ();
     
-    const tokenResponse = await credential.getToken("https://database.windows.net/");
+    const tokenResponse = await credential.getToken("https://database.windows.net/.default");
     if (!tokenResponse) {
         throw new Error("Failed to acquire access token for SQL Server");
     }
